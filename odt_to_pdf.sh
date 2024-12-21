@@ -1,7 +1,20 @@
 #!/bin/bash
 
-echo "Converting all .odt in the current folder files to .pdf's. Please wait, this might take a while."
+# Check if a commit message was provided
+COMMIT_MESSAGE=$1
+
+# Informing user about the conversion process
+echo "Converting all .odt files in the current folder to .pdf's. Please wait, this might take a while."
+
 time libreoffice --convert-to pdf *.odt
+
 git add .
 git status
-echo "Done, you may commit now :)"
+
+# If a commit message is provided, commit changes
+if [ -n "$COMMIT_MESSAGE" ]; then
+    git commit -m "$COMMIT_MESSAGE"
+    echo "Changes committed with message: '$COMMIT_MESSAGE'"
+else
+    echo "No commit message provided. Skipping git commit."
+fi
