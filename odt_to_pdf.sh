@@ -15,6 +15,7 @@ git status
 if [ -n "$COMMIT_MESSAGE" ]; then
     git commit -m "$COMMIT_MESSAGE"
     echo "Changes committed with message: '$COMMIT_MESSAGE'"
+   	git push
 else
     echo "No commit message provided. Skipping git commit."
 fi
